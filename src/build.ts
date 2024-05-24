@@ -75,7 +75,7 @@ export class SnapcraftBuilder {
       snapcraft = `${snapcraft} --ua-token ${this.uaToken}`
     }
 
-    await exec.exec('sg', ['lxd', '-c', snapcraft], {
+    await exec.exec('sudo', ['-u', os.userInfo().username, snapcraft], {
       cwd: this.projectRoot,
       env
     })
