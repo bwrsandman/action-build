@@ -27290,7 +27290,7 @@ class SnapcraftBuilder {
         if (this.uaToken) {
             snapcraft = `${snapcraft} --ua-token ${this.uaToken}`;
         }
-        await exec.exec('sg', ['lxd', '-c', snapcraft], {
+        await exec.exec('sudo', ['-u', external_os_.userInfo().username, 'lxd', '-c', snapcraft], {
             cwd: this.projectRoot,
             env
         });

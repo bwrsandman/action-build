@@ -75,10 +75,14 @@ export class SnapcraftBuilder {
       snapcraft = `${snapcraft} --ua-token ${this.uaToken}`
     }
 
-    await exec.exec('sg', ['lxd', '-c', snapcraft], {
-      cwd: this.projectRoot,
-      env
-    })
+    await exec.exec(
+      'sudo',
+      ['-u', os.userInfo().username, 'lxd', '-c', snapcraft],
+      {
+        cwd: this.projectRoot,
+        env
+      }
+    )
   }
 
   // This wrapper is for the benefit of the tests, due to the crazy
